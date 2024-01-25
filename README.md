@@ -1,2 +1,2 @@
-# vec
-Vector Expressed in C
+# result
+Convinient `Result` type to use in all my projects.
