@@ -18,12 +18,12 @@ static const char *const result_msgs[] = {
   [RangeErr] = "out of range!",
 };
 
-static_assert(
+_Static_assert(
   sizeof(result_msgs) / sizeof(*result_msgs) == ResultCount,
   "Several results are not described!"
 );
 
-const char *const result_explain(Result result) { return result_msgs[result]; }
+#define explain(result) (result_msgs[result])
 
 /* #define result_match(result, ...) \
    { \
