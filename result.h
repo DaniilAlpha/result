@@ -5,20 +5,21 @@
 
 typedef enum Result {
   Ok = 0,
+  UnknownErr,
   OutOfMemErr,
   RangeErr,
 
-  // should be last
-  ResultCount
+  ResultCount,  // should be last
 } Result;
 
 static char const *const result_msgs[] = {
   [Ok] = "ok",
+  [UnknownErr] = "unknown!",
   [OutOfMemErr] = "out of memory!",
   [RangeErr] = "out of range!",
 };
 
-_Static_assert(
+static_assert(
   sizeof(result_msgs) / sizeof(*result_msgs) == ResultCount,
   "Several results are not described!"
 );
