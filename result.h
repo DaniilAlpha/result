@@ -12,7 +12,7 @@ typedef enum Result {
   ResultCount
 } Result;
 
-static const char *const result_msgs[] = {
+static char const *const result_msgs[] = {
   [Ok] = "ok",
   [OutOfMemErr] = "out of memory!",
   [RangeErr] = "out of range!",
@@ -27,14 +27,14 @@ _Static_assert(
 
 /* #define result_match(result, ...) \
    { \
-     const Result error = (result); \
+      Result const error = (result); \
      switch (error) \
    } \
   ((void)0) */
 
 #define unroll(result)                                                         \
   {                                                                            \
-    const Result error = (result);                                             \
+    Result const error = (result);                                             \
     switch (error) {                                                           \
     case Ok: break;                                                            \
     default: return error;                                                     \
