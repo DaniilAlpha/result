@@ -8,6 +8,7 @@ typedef enum Result {
   UnknownErr,
   OutOfMemErr,
   RangeErr,
+  HashCollisionErr,
 
   ResultCount,  // should be last
 } Result;
@@ -17,6 +18,7 @@ static char const *const result_msgs[] = {
   [UnknownErr] = "unknown!",
   [OutOfMemErr] = "out of memory!",
   [RangeErr] = "out of range!",
+  [HashCollisionErr] = "hash colision!",
 };
 
 // clang-format off
@@ -24,13 +26,6 @@ static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == ResultCount, "Severa
 // clang-format on
 
 #define explain(result) (result_msgs[result])
-
-/* #define result_match(result, ...) \
-   { \
-      Result const error = (result); \
-     switch (error) \
-   } \
-  ((void)0) */
 
 #define unroll(result)                                                         \
   {                                                                            \
