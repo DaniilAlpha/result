@@ -10,6 +10,8 @@ typedef enum Result {
   RangeErr,
   HashCollisionErr,
 
+  FileError,
+
   ResultCount,  // should be last
 } Result;
 
@@ -19,6 +21,8 @@ static char const *const result_msgs[] = {
   [OutOfMemErr] = "out of memory!",
   [RangeErr] = "out of range!",
   [HashCollisionErr] = "hash colision!",
+
+  [FileError] = "file unavailable!",
 };
 
 // clang-format off
