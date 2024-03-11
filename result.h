@@ -10,7 +10,7 @@ typedef enum Result {
   RangeErr,
   HashCollisionErr,
 
-  FileError,
+  FileUnavailableErr,
 
   ResultCount,  // should be last
 } Result;
@@ -22,7 +22,7 @@ static char const *const result_msgs[] = {
   [RangeErr] = "out of range!",
   [HashCollisionErr] = "hash colision!",
 
-  [FileError] = "file unavailable!",
+  [FileUnavailableErr] = "file unavailable!",
 };
 
 // clang-format off
