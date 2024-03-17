@@ -11,6 +11,8 @@ typedef enum Result {
   HashCollisionErr,
 
   FileUnavailableErr,
+  FileReadingErr,
+  FileWritingErr,
 
   ResultCount,  // should be last
 } Result;
@@ -23,6 +25,8 @@ static char const *const result_msgs[] = {
   [HashCollisionErr] = "hash colision!",
 
   [FileUnavailableErr] = "file unavailable!",
+  [FileReadingErr] = "file reading failed!",
+  [FileWritingErr] = "file writing failed!",
 };
 
 // clang-format off
