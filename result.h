@@ -14,6 +14,8 @@ typedef enum Result {
   FileReadingErr,
   FileWritingErr,
 
+  FormatErr,
+
   ResultCount,  // should be last
 } Result;
 
@@ -27,6 +29,8 @@ static char const *const result_msgs[] = {
   [FileUnavailableErr] = "file unavailable!",
   [FileReadingErr] = "file reading failed!",
   [FileWritingErr] = "file writing failed!",
+
+  [FormatErr] = "invalid format!",
 };
 
 // clang-format off
@@ -35,12 +39,12 @@ static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == ResultCount, "Severa
 
 #define explain(result) (result_msgs[result])
 
-#define unroll(result)                                                         \
+#define unroll(result, ...)                                                    \
   {                                                                            \
     Result const error = (result);                                             \
     switch (error) {                                                           \
     case Ok: break;                                                            \
-    default: return error;                                                     \
+    default: __VA_ARGS__ return error;                                         \
     }                                                                          \
   }                                                                            \
   ((void)0)
