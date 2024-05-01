@@ -4,33 +4,35 @@
 #include <assert.h>
 
 typedef enum Result {
-  Ok = 0,
-  UnknownErr,
-  OutOfMemErr,
-  RangeErr,
-  HashCollisionErr,
+    Ok = 0,
+    UnknownErr,
+    OutOfMemErr,
+    RangeErr,
+    HashCollisionErr,
 
-  FileUnavailableErr,
-  FileReadingErr,
-  FileWritingErr,
+    FileUnavailableErr,
+    FileReadingErr,
+    FileWritingErr,
 
-  FormatErr,
+    FormatErr,
+    ArgErr,
 
-  ResultCount,  // should be last
+    ResultCount,  // should be last
 } Result;
 
 static char const *const result_msgs[] = {
-  [Ok] = "ok",
-  [UnknownErr] = "unknown!",
-  [OutOfMemErr] = "out of memory!",
-  [RangeErr] = "out of range!",
-  [HashCollisionErr] = "hash colision!",
+    [Ok] = "ok",
+    [UnknownErr] = "unknown!",
+    [OutOfMemErr] = "out of memory!",
+    [RangeErr] = "out of range!",
+    [HashCollisionErr] = "hash colision!",
 
-  [FileUnavailableErr] = "file unavailable!",
-  [FileReadingErr] = "file reading failed!",
-  [FileWritingErr] = "file writing failed!",
+    [FileUnavailableErr] = "file unavailable!",
+    [FileReadingErr] = "file reading failed!",
+    [FileWritingErr] = "file writing failed!",
 
-  [FormatErr] = "invalid format!",
+    [FormatErr] = "invalid format!",
+    [ArgErr] = "wrong argument!"
 };
 
 // clang-format off
@@ -40,13 +42,13 @@ static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == ResultCount, "Severa
 #define explain(result) (result_msgs[result])
 
 #define unroll(result, ...)                                                    \
-  {                                                                            \
-    Result const error = (result);                                             \
-    switch (error) {                                                           \
-    case Ok: break;                                                            \
-    default: __VA_ARGS__ return error;                                         \
+    {                                                                          \
+        Result const error = (result);                                         \
+        switch (error) {                                                       \
+        case Ok: break;                                                        \
+        default: __VA_ARGS__ return error;                                     \
+        }                                                                      \
     }                                                                          \
-  }                                                                            \
-  ((void)0)
+    ((void)0)
 
 #endif
