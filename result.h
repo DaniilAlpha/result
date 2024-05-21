@@ -16,6 +16,7 @@ typedef enum Result {
 
     FormatErr,
     ArgErr,
+    StateErr,
 
     ResultCount,  // should be last
 } Result;
@@ -32,7 +33,8 @@ static char const *const result_msgs[] = {
     [FileWritingErr] = "file writing failed!",
 
     [FormatErr] = "invalid format!",
-    [ArgErr] = "wrong argument!"
+    [ArgErr] = "invalid argument!",
+    [StateErr] = "invalid state!"
 };
 
 // clang-format off
