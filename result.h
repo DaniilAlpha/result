@@ -48,7 +48,7 @@ static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == RESULT_COUNT, "Sever
 /// @brief If result is not Ok, returns it from the current function.
 /// @param result result to be analyzed
 /// @param ... block to execute before returning
-#define UNROLL(result, ...)                                                    \
+#define UNROLL_CLEANUP(result, ...)                                            \
     {                                                                          \
         Result const error = (result);                                         \
         switch (error) {                                                       \
@@ -57,5 +57,9 @@ static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == RESULT_COUNT, "Sever
         }                                                                      \
     }                                                                          \
     ((void)0)
+
+/// @brief If result is not Ok, returns it from the current function.
+/// @param result result to be analyzed
+#define UNROLL(result) UNROLL_CLEANUP(result, )
 
 #endif
