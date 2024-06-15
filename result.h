@@ -18,7 +18,7 @@ typedef enum Result {
     ArgErr,
     StateErr,
 
-    ResultCount,  // should be last
+    RESULT_COUNT,  // should be last
 } Result;
 
 static char const *const result_msgs[] = {
@@ -38,12 +38,17 @@ static char const *const result_msgs[] = {
 };
 
 // clang-format off
-static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == ResultCount, "Several results are not described!");
+static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == RESULT_COUNT, "Several results are not described!");
 // clang-format on
 
+/// @brief Returns the short message describing what the result is.
+/// @param result result to be analyzed
 #define explain(result) (result_msgs[result])
 
-#define unroll(result, ...)                                                    \
+/// @brief If result is not Ok, returns it from the current function.
+/// @param result result to be analyzed
+/// @param ... block to execute before returning
+#define UNROLL(result, ...)                                                    \
     {                                                                          \
         Result const error = (result);                                         \
         switch (error) {                                                       \
