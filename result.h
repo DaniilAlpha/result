@@ -1,8 +1,6 @@
 #ifndef RESULT_H
 #define RESULT_H
 
-#include <assert.h>
-
 typedef enum Result {
     Ok = 0,
     UnknownErr,
