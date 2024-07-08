@@ -1,8 +1,6 @@
 #ifndef RESULT_H
 #define RESULT_H
 
-#include <assert.h>
-
 typedef enum Result {
     Ok = 0,
     UnknownErr,
@@ -38,7 +36,7 @@ static char const *const result_msgs[] = {
 };
 
 // clang-format off
-static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == RESULT_COUNT, "Several results are not described!");
+_Static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == RESULT_COUNT, "Several results are not described!");
 // clang-format on
 
 /// @brief Returns the short message describing what the result is.
@@ -48,7 +46,7 @@ static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == RESULT_COUNT, "Sever
 /// @brief If result is not Ok, returns it from the current function.
 /// @param result result to be analyzed
 /// @param ... block to execute before returning
-#define UNROLL(result, ...)                                                    \
+#define UNROLL_CLEANUP(result, ...)                                            \
     {                                                                          \
         Result const error = (result);                                         \
         switch (error) {                                                       \
@@ -57,5 +55,9 @@ static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == RESULT_COUNT, "Sever
         }                                                                      \
     }                                                                          \
     ((void)0)
+
+/// @brief If result is not Ok, returns it from the current function.
+/// @param result result to be analyzed
+#define UNROLL(result) UNROLL_CLEANUP(result, )
 
 #endif
