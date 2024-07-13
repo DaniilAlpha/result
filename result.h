@@ -12,6 +12,11 @@ typedef enum Result {
     FileReadingErr,
     FileWritingErr,
 
+    SocketCreationErr,
+    SocketBindingErr,
+    SocketListeningErr,
+    SocketAcceptingErr,
+
     FormatErr,
     ArgErr,
     StateErr,
@@ -29,6 +34,11 @@ static char const *const result_msgs[] = {
     [FileUnavailableErr] = "file unavailable!",
     [FileReadingErr] = "file reading failed!",
     [FileWritingErr] = "file writing failed!",
+
+    [SocketCreationErr] = "socket creation failed!",
+    [SocketBindingErr] = "socket binding failed!",
+    [SocketListeningErr] = "socket listening failed!",
+    [SocketAcceptingErr] = "socket accepting failed!",
 
     [FormatErr] = "invalid format!",
     [ArgErr] = "invalid argument!",
