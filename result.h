@@ -60,10 +60,10 @@ _Static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == RESULT_COUNT, "Seve
 /// @param ... block to execute before returning
 #define UNROLL_CLEANUP(result, ...)                                            \
     {                                                                          \
-        Result const error = (result);                                         \
-        switch (error) {                                                       \
+        Result const err = (result);                                           \
+        switch (err) {                                                         \
         case Ok: break;                                                        \
-        default: __VA_ARGS__ return error;                                     \
+        default: __VA_ARGS__ return err;                                       \
         }                                                                      \
     }                                                                          \
     ((void)0)
