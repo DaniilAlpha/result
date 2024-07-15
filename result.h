@@ -16,6 +16,8 @@ typedef enum Result {
     SocketBindingErr,
     SocketListeningErr,
     SocketAcceptingErr,
+    SocketSendingErr,
+    SocketReceivingErr,
 
     FormatErr,
     ArgErr,
