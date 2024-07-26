@@ -48,7 +48,7 @@ static char const *const result_msgs[] = {
 };
 
 // clang-format off
-_Static_assert(sizeof(result_msgs) / sizeof(*result_msgs) == RESULT_COUNT, "Several results are not described!");
+_Static_assert(sizeof(result_msgs) / sizeof(result_msgs[0]) == RESULT_COUNT, "Several results are not described!");
 // clang-format on
 
 /// @brief Returns the short message describing what the result is.
